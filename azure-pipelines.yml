@@ -16,6 +16,15 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- pwsh: |
+    Write-Host "Installed .NET Framework versions (32 bit):"
+    Get-ChildItem $env:SystemRoot\Microsoft.NET\Framework -Directory -Name
+    Write-Host "Installed .NET Framework versions (64 bit):"
+    Get-ChildItem $env:SystemRoot\Microsoft.NET\Framework64 -Directory -Name
+    Write-Host "Installed .NET Framework SDKs:"
+    Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\v10.0A\bin" -Directory -Name
+  displayName: 'List installed .NET Framework versions'
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -23,13 +32,9 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: 'Build .NET 3.5 solution with Visual Studio'
   inputs:
     solution: '$(solution)'
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
