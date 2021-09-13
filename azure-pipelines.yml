@@ -19,6 +19,11 @@ variables:
 steps:
 - pwsh: |
     Write-Host "Installed .NET Framework versions (32 bit):"
+    Get-ComputerInfo | Select-Object WindowsProductName
+  displayName: 'Show Windows version'
+
+- pwsh: |
+    Write-Host "Installed .NET Framework versions (32 bit):"
     Get-ChildItem $env:SystemRoot\Microsoft.NET\Framework -Directory -Name
     Write-Host "Installed .NET Framework versions (64 bit):"
     Get-ChildItem $env:SystemRoot\Microsoft.NET\Framework64 -Directory -Name
