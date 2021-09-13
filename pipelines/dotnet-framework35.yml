@@ -13,5 +13,14 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- template: ./dotnet-framework35-steps.yml
+jobs:
+- job: 'vs2017-win2016'
+  displayName: 'vs2017-win2016 image'
+
+  pool:
+    # vmImage: 'vs2017-win2016'
+    # name: 'Hosted'
+    vmImage: 'windows-2019'
+
+  steps:
+  - template: ./dotnet-framework35-steps.yml
