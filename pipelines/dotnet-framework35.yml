@@ -14,7 +14,7 @@ variables:
   buildConfiguration: 'Release'
 
 jobs:
-- job: 'vs2017-win2016'
+- job: 'windows2016'
   displayName: 'vs2017-win2016 image'
 
   pool:
