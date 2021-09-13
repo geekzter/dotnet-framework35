@@ -1,21 +1,9 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
-trigger:
-- main
-
-pool:
-  # vmImage: 'vs2017-win2016'
-  vmImage: 'windows-2019'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-
 steps:
+- pwsh: |
+    Write-Host "Installed .NET Framework versions (32 bit):"
+    Get-ComputerInfo | Select-Object WindowsProductName
+  displayName: 'Show Windows version'
+
 - pwsh: |
     Write-Host "Installed .NET Framework versions (32 bit):"
     Get-ChildItem $env:SystemRoot\Microsoft.NET\Framework -Directory -Name

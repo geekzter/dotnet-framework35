@@ -1,0 +1,37 @@
+# Build .NET Framework 3.5 projects
+
+trigger:
+- main
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+jobs:
+- job: 'windows2016'
+  displayName: 'vs2017-win2016 image'
+
+  pool:
+    vmImage: 'vs2017-win2016'
+
+  steps:
+  - template: ./dotnet-framework35-steps.yml
+
+- job: 'hosted'
+  displayName: 'Hosted pool'
+
+  pool:
+    name: 'Hosted'
+
+  steps:
+  - template: ./dotnet-framework35-steps.yml
+
+- job: 'windows2019'
+  displayName: 'windows-2019 image'
+
+  pool:
+    vmImage: 'windows-2019'
+
+  steps:
+  - template: ./dotnet-framework35-steps.yml
