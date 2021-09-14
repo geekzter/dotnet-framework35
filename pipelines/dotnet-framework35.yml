@@ -9,13 +9,6 @@ variables:
   buildConfiguration: 'Release'
 
 jobs:
-# - job: 'windows2016'
-#   displayName: 'vs2017-win2016 image'
-#   pool:
-#     vmImage: 'vs2017-win2016'
-#   steps:
-#   - template: ./dotnet-framework35-steps.yml
-
 - job: 'hostedvs2017'
   displayName: 'Hosted VS2017 pool'
   pool:
@@ -23,16 +16,23 @@ jobs:
   steps:
   - template: ./dotnet-framework35-steps.yml
 
-# - job: 'hosted'
-#   displayName: 'Hosted pool'
-#   pool:
-#     name: 'Hosted'
-#   steps:
-#   - template: ./dotnet-framework35-steps.yml
+- job: 'windows2016'
+  displayName: 'vs2017-win2016 image'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - template: ./dotnet-framework35-steps.yml
 
-# - job: 'windows2019'
-#   displayName: 'windows-2019 image'
-#   pool:
-#     vmImage: 'windows-2019'
-#   steps:
-#   - template: ./dotnet-framework35-steps.yml
+- job: 'hosted'
+  displayName: 'Hosted pool'
+  pool:
+    name: 'Hosted'
+  steps:
+  - template: ./dotnet-framework35-steps.yml
+
+- job: 'windows2019'
+  displayName: 'windows-2019 image'
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  - template: ./dotnet-framework35-steps.yml
