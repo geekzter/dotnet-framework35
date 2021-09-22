@@ -1,7 +1,22 @@
 # Build .NET Framework 3.5 projects
+name: dotnet-framework35
 
-trigger:
+trigger: 
 - main
+pr:
+  branches:
+    include:
+    - '*'
+  paths:
+    exclude:
+    - '*.md'  
+schedules:
+- cron: '0 1 * * *'
+  displayName: 'Nightly build (UTC)'
+  always: 'true'
+  branches:
+    include:
+    - main
 
 variables:
   solution: '**/*.sln'
@@ -34,5 +49,12 @@ jobs:
   displayName: 'windows-2019 image'
   pool:
     vmImage: 'windows-2019'
+  steps:
+  - template: ./dotnet-framework35-steps.yml
+
+- job: 'windows2022'
+  displayName: 'windows-2022 image'
+  pool:
+    vmImage: 'windows-2022'
   steps:
   - template: ./dotnet-framework35-steps.yml
