@@ -3,6 +3,13 @@ name: dotnet-framework35
 
 trigger: 
 - main
+pr:
+  branches:
+    include:
+    - '*'
+  paths:
+    exclude:
+    - '*.md'  
 schedules:
 - cron: '0 1 * * *'
   displayName: 'Nightly build (UTC)'

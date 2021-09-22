@@ -1,6 +1,6 @@
 steps:
 - pwsh: |
-    Write-Host "Installed .NET Framework versions (32 bit):"
+    Write-Host "Windows version:"
     Get-ComputerInfo | Select-Object WindowsProductName
   displayName: 'Show Windows version'
 
