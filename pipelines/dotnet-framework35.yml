@@ -31,16 +31,16 @@ jobs:
   steps:
   - template: ./dotnet-framework35-steps.yml
 
-- job: 'windows2019'
-  displayName: 'windows-2019 image'
-  pool:
-    vmImage: 'windows-2019'
-  steps:
-  - template: ./dotnet-framework35-steps.yml
-
 - job: 'windows2022'
   displayName: 'windows-2022 image'
   pool:
     vmImage: 'windows-2022'
+  steps:
+  - template: ./dotnet-framework35-steps.yml
+
+- job: 'windows20125'
+  displayName: 'windows-2025 image'
+  pool:
+    vmImage: 'windows-2025'
   steps:
   - template: ./dotnet-framework35-steps.yml
